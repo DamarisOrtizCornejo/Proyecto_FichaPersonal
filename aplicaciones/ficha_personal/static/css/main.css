@@ -1,0 +1,62 @@
+/** creacion de varibles globales*/
+/* selector(h1,p,div, etc) {
+    propiedad1(color,width,margin, etc): valor1(red,50px,5px);
+    propiedad2: valor2;
+} */
+:root {
+  --primary-color: #70014b;
+  --secundary-color: #9c000e;
+  --boton-success:#81f0b2;
+  --boton-secundary:#3b3a3a;
+  --boton-warning:#f14b22;
+  --third-color: #eef11c;
+  --boton-cancelar:#fe4093;
+  --color-h1:#acec14fa;
+  --font-size:16px;
+  --font-color:#000;
+  --font-color-reverse:#fff;
+}
+/** reseteo de estilos */
+html {
+  box-sizing: border-box; /** no afecte al tamaño de la caja el margin ni el padding y borde */
+  font-size: var(--font-size);
+  scroll-behavior: smooth; /** aplica una transiccion no subita eal cambiar de seccion */
+  color:var(--font-color);
+}
+/** todos los elementos hereden el box-sizing: */
+*,*:before,*:after{
+  box-sizing: inherit;
+}
+body{
+  margin:0; /** por default trae un margen de 8px */
+  overflow-x: hidden;/** que el desborde del eje horizontal se oculte y no genere la barra de desplazamiento*/
+  box-sizing: inherit
+}
+main{
+  margin:0 10px;
+  margin-top: 20px;
+}
+img{
+  max-width: 100%;/** las imagenes se adaptan a la maxima anchura de su contenedor */
+  height: auto;
+}
+a{
+  text-decoration: none;
+  color:var(--font-color-reverse)
+}
+li{
+  list-style:none;
+}
+
+.principal{
+  position:static;
+  top:-200px;
+  text-align: center;
+  background-color: var(--boton-secundary);
+  height:90vh;
+}
+.principal h1{
+  padding:10px;
+  color:var(--color-h1)
+}
+

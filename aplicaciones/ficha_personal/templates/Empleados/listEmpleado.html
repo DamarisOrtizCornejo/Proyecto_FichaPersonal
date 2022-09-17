@@ -1,0 +1,49 @@
+{% extends 'consulta.html' %}
+{% load static %}
+
+{% block js %}
+{#    <script src="{% static 'cliente/js/list.js' %}"></script>#}
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'ficha_Personal:empleado' %}" method="GET">
+      <div class="input-group mb-3">
+        <input type="text" name="query" value="{{ query }}" class="form-control" placeholder="Buscar... por nombre" id="idInputSearch" aria-describedby="basic-addon2"/>
+        <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">Buscar</button>
+      </div>
+    </form>
+{% endblock %}
+
+{% block columns %}
+    <tr class="table-danger text-center">
+        <th scope="col" style="width: 5px;">#</th>
+        <th scope="col" style="width: 5px;">Nombre</th>
+        <th scope="col" style="width: 5%;">Cèdula</th>
+        <th scope="col" style="width: 5%;">Direcciòn</th>
+        <th scope="col" style="width: 5%;">Telèfono</th>
+        <th scope="col" style="width: 5%;">Correo</th>
+        <th scope="col" style="width: 15%;">Foto</th>
+        <th scope="col" style="width: 25%;">Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    {% for object in empleados %}
+        <tr class="align-middle table-warning">
+            <td>{{ object.id }}</td>
+            <td>{{ object.nombres }}</td>
+            <td>{{ object.cedula }}</td>
+            <td>{{ object.direccion }}</td>
+            <td>{{ object.telefonos }}</td>
+            <td>{{ object.email }}</td>
+            <td class="text-center">
+                <img width="70" src="{{ object.get_image }}" alt="Sin Foto">
+            </td>
+            <td class="acciones">
+                <a href="{% url 'ficha_Personal:actualizarempleado' object.id %}">✏️</a>
+                <a href="{% url 'ficha_Personal:deleteempleado' object.id %}">❌</a>
+            </td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

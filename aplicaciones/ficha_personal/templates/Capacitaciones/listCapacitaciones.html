@@ -1,0 +1,33 @@
+{% extends 'consultaFicha.html' %}
+{% load static %}
+
+{% block js %}
+{#    <script src="{% static 'cliente/js/list.js' %}"></script>#}
+{% endblock %}
+
+{% block search %}
+    <form action="{% url 'ficha_Personal:capacitaciones' %}" method="GET">
+      <div class="input-group mb-3">
+        <input type="text" name="query" value="{{ query }}" class="form-control" placeholder="Buscar... por nombre" id="idInputSearch" aria-describedby="basic-addon2"/>
+        <button type="submit" class="btn btn-primary mr-1" id="idSearchSp">Buscar</button>
+      </div>
+    </form>
+{% endblock %}
+
+{% block columns %}
+    <tr class="table-danger text-center">
+        <th scope="col" style="width: 25%;">Empleado</th>
+        <th scope="col" style="width: 15%;">Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+  {% for object in capacitaciones %}
+      <tr class="align-middle table-warning text-center">
+          <td>{{ object.empleado }}</td>
+          <td class="acciones">
+            <a href="{% url 'ficha_Personal:registroCapacitaciones' object.id %}">🔎️ Ver información</a>
+          </td>
+      </tr>
+  {% endfor %}
+{% endblock %}

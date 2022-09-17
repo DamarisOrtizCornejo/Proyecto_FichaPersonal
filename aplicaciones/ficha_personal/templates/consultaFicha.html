@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+
+    <div class="container card card-primary">
+        <div class="card-header" >
+            <h3 class="card-title text-success text-center ">
+                {{ titulo }}
+            </h3>
+        </div>
+        <div class="card-body table-responsive">
+            {% block search %}
+
+            {% endblock %}
+
+            <div class="card-body table-responsive">
+
+                <table class="table table-bordered" id="data">
+                    <thead>
+                    {% block columns %}
+
+                    {% endblock %}
+                    </thead>
+                    <tbody>
+                    {% block rows %}
+
+                    {% endblock %}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
+            {% block pagination %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center mt-5">
+
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            </li>
+                        {% endif %}
+
+                        {% for i in page_obj.paginator.page_range %}
+
+                            {% if i == page_obj.number %}
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">{{ i }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                </li>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+            {% endblock %}
+
+        </div>
+        <div class="card-footer">
+            {% block buttons_list %}
+
+                <a href="{{ listar_url }}" class="btn btn-success btn-flat">
+                    ↻ Actualizar
+                </a>
+
+                <a href="{% url 'ficha_Personal:registroContactoEmergencia' %}" class="btn btn-success btn-flat">
+                    ↻ Agregar
+                </a>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

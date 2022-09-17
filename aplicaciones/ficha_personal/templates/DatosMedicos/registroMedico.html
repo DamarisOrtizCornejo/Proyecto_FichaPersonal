@@ -1,0 +1,56 @@
+{% extends 'boton_agr_reg.html' %}
+{% load static %}
+
+{% block controls %}
+    <h4 class="fw-bold fst-italic text-secondary text-center">CONTACTO DE EMERGENCIA</h4>
+    <hr class="bg-success border-4 border-top border-success">
+    <table class="table table-info table-striped table-bordered border-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Cédula</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Parentesco</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Maria Cornejo</td>
+              <td>0987654321</td>
+              <td>0989765456</td>
+              <td>Madre</td>
+              <td>Durán</td>
+              <td class="acciones">
+                <a href="{% url 'editarContactoEmergencias' %}">✏️</a>
+                <a href="{% url 'eliminarContactoEmergencia' %}">❌</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Christian Ortiz</td>
+              <td>0876545789</td>
+              <td>0987654325</td>
+              <td>Padre</td>
+              <td>Durán</td>
+              <td class="acciones">
+                <a href="{% url 'editarContactoEmergencias' %}">✏️</a>
+                <a href="{% url 'eliminarContactoEmergencia' %}">❌</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'FichaPersonal/boton_gua_can.html' %}
+{% load static %}
+
+{% block controls %}
+    <h4 class="fw-bold fst-italic text-secondary text-center">INFORMACIÓN ACADÉMICA</h4>
+    <hr class="bg-success border-4 border-top border-success">
+        <div class="col-md-6">
+            <label class="form-label fw-bold">Fecha de Inicio:</label>
+            <input type="text" class="form-control" placeholder="04/02/2010">
+        </div>
+    <br>
+        <div class="col-md-6">
+            <label class="form-label fw-bold">Fecha de Finalización:</label>
+            <input type="text" class="form-control" placeholder="15/04/2015">
+        </div>
+    <br>
+        <div class="col-12">
+            <label class="form-label fw-bold">Institución:</label>
+            <input type="text" class="form-control" style="width: 650px;" placeholder="Universidad Estatal de Guayaquil">
+        </div>
+    <br>
+        <div class="col-12">
+            <label class="form-label fw-bold">Título:</label>
+            <input type="text" class="form-control" style="width: 650px;" placeholder="Ingeniero">
+        </div>
+
+{% endblock %}

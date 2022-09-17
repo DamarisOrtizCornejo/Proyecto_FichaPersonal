@@ -1,0 +1,40 @@
+{% extends 'boton_agr_reg.html' %}
+{% load static %}
+
+{% block controls %}
+    <h4 class="fw-bold fst-italic text-secondary text-center">CONTACTO DE EMERGENCIA</h4>
+    <hr class="bg-success border-4 border-top border-success">
+    <table class="table table-info table-striped table-bordered border-dark col-md-3">
+    {% block columns %}
+            <thead>
+                <tr class="text-center">
+                    <th scope="col" style="width: 5px;">#</th>
+                    <th scope="col" style="width: 20px;">Nombre</th>
+                    <th scope="col" style="width: 10%;">Cèdula</th>
+                    <th scope="col" style="width: 10%;">Teléfono</th>
+                    <th scope="col" style="width: 10%;">Parentesco</th>
+                    <th scope="col" style="width: 20%;">Dirección</th>
+                    <th scope="col" style="width: 10%;">Opciones</th>
+                </tr>
+            </thead>
+    {% endblock %}
+    {% block rows %}
+        {% for object in contactoEmergencia %}
+            <tbody>
+                <tr class="align-middle table-warning">
+                    <td>{{ object.id }}</td>
+                    <td>{{ object.nombres }}</td>
+                    <td>{{ object.cedula }}</td>
+                    <td>{{ object.telefonos }}</td>
+                    <td>{{ object.parentesco }}</td>
+                    <td>{{ object.direccion }}</td>
+                    <td class="acciones">
+                        <a href="{% url 'ficha_Personal:actualizarContactoEmergencia' object.id %}">✏️</a>
+                        <a href="{% url 'ficha_Personal:deleteContactoEmergencia' object.id %}">❌</a>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endblock %}
+    </table>
+{% endblock %}
