@@ -63,7 +63,7 @@ class ContactoEmergenciasForm(ModelForm):
         model = ContactoEmergencias
         fields = '__all__'
         widgets = {
-            'nombres': forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Ingrese su nombre'}),
+            'nombres': forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Ingrese nombre'}),
             'cedula': forms.TextInput(attrs={'class': 'form-control','placeholder':'Ingrese su número de cédula'}),
             'telefonos': forms.TextInput(attrs={'class': 'form-control','placeholder':'Número celular'}),
             'parentesco': forms.Select(attrs={'class': 'form-control'}),
@@ -86,7 +86,7 @@ class CapacitacionesForm(ModelForm):
         model = Capacitaciones
         fields = '__all__'
         widgets = {
-            'certificado': forms.FileField(),
+            #'certificado': forms.FileField(),
             'fecha_Inicio': forms.DateInput(format=('%d/%m/%Y'),attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha inicial','type': 'date'}),
             'fecha_Fin': forms.DateInput(format=('%d/%m/%Y'),attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha final','type': 'date'}),
             'duracion': forms.TextInput(attrs={'class': 'form-control','placeholder':'Ingrese cuanto tiempo duro su capacitacion'}),

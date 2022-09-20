@@ -15,20 +15,25 @@
 {% endblock %}
 
 {% block columns %}
-    <tr class="table-danger text-center">
-        <th scope="col" style="width: 25%;">Empleado</th>
-        <th scope="col" style="width: 15%;">Opciones</th>
-    </tr>
+    <thead>
+        <tr class="align-middle table-success text-center">
+            <th scope="col" style="width: 25px;">Empleado</th>
+            <th scope="col" style="width: 10%;">Opciones</th>
+        </tr>
+    </thead>
 {% endblock %}
 
 {% block rows %}
-    {% for object in contactoEmergencia %}
-      <tr class="align-middle table-warning text-center">
-          <td>{{ object.empleado }}</td>
-          <td class="acciones">
-            <a href="{% url 'ficha_Personal:registroContactoEmergencia' object.id %}">🔎️ Ver información</a>
-          </td>
-      </tr>
+    {% for contaEmer in contactoEmergencia %}
+        <tbody>
+            <tr class="align-middle table-warning text-center">
+                <td>{{ contaEmer.empleado }}</td>
+                <td class="acciones">
+                    <a href="{% url 'ficha_Personal:registroContactoEmergencia' %}">🔎️ Ver información</a>
+                </td>
+            </tr>
+
+        </tbody>
     {% endfor %}
 
 {% endblock %}

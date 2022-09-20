@@ -1,316 +1,115 @@
-{% extends 'FichaPersonal/empleados/formularioEmpleados.html' %}
+{% extends 'formulario.html' %}
 {% load static %}
+{
+{% block js %}
+{#    <script src="{% static 'cliente/js/form.js' %}"></script>#}
+{% endblock %}
 
 {% block controls %}
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Error al Grabar</strong> {{ form.errors }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+    {% endif %}
+
+    <input type="hidden" name="action" value="{{ action }}">
     <h4 class="fw-bold fst-italic text-secondary text-center">DATOS PERSONALES</h4>
-    <hr class="bg-success border-4 border-top border-success">
-    <div class="col-md-6">
+    <hr class="bg-success border-5 border-top border-success">
+        <div class="form-group fw-bold">
+            {{ form.as_p }}
+        </div>
+    <hr class="bg-success border-5 border-top border-success">
+    <h4 class="fw-bold fst-italic text-secondary text-center">CONTACTO DE EMERGENCIAS</h4>
+    <hr class="bg-success border-5 border-top border-success">
 
-        <fieldset disabled>
-            <div class="col-md-6">
-                <label class="form-label fw-bold">Nombre:</label>
-                <input type="text" class="form-control" style="width: 650px;" placeholder="Damaris Lizbeth">
-            </div>
-            <div class="col-md-6">
-                <label class="form-label fw-bold">Apellido:</label>
-                <input type="text" class="form-control" style="width: 650px;" placeholder="Ortiz Cornejo">
-            </div>
-            <div class="col-md-6">
-                <label class="form-label fw-bold">N° de Documento de Identidad:</label>
-                <input type="text" class="form-control" style="width: 650px;" id="disabledTextInput" placeholder="0955453741">
-            </div>
-            <div class="col-md-6">
-                <label class="form-label fw-bold">Fecha de Nacimiento:</label>
-                <input type="text" class="form-control" style="width: 650px;" id="disabledTextInput" placeholder="04/11/2001">
-            </div>
-            <div class="col-md-6">
-                <label class="form-label fw-bold">Nacionalidad:</label>
-                <input type="text" class="form-control" style="width: 650px;" id="disabledTextInput" placeholder="Ecuatoriana">
-            </div>
-        </fieldset>
-    </div>
-        <div class="col-12">
-            <label for="inputState" class="form-label fw-bold">Estado Civil:</label>
-            <select id="inputState" class="form-select" style="width: 650px;">
-                <option selected>Soltero</option>
-                <option>Casado</option>
-                <option>Unión Libre</option>
-                <option>Divorciado</option>
-                <option>Viudo</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="inputAddress" class="form-label fw-bold">Dirección:</label>
-            <input type="text" class="form-control" style="width: 650px;" id="inputAddress" placeholder="Guayaquil">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label fw-bold">Celular / Teléfono Fijo:</label>
-            <input type="text" class="form-control" style="width: 650px;" placeholder="0969188296">
-        </div>
-        <div class="col-md-6">
-            <label for="inputState" class="form-label fw-bold">Tipo de Contrato:</label>
-            <select id="inputState" class="form-select">
-                <option selected>Contrato indefinido</option>
-                <option>Contrato temporal</option>
-                <option>Contrato en prácticas</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="inputState" class="form-label fw-bold">Sueldo:</label>
-            <select id="inputState" class="form-select" style="width: 650px;">
-                <option selected>$800</option>
-                <option>$500</option>
-                <option>$1000</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="inputState" class="form-label fw-bold">Departamento:</label>
-            <select id="inputState" class="form-select">
-                <option selected>Ventas</option>
-                <option>RR.HH</option>
-                <option>Contabilidad</option>
-                <option>Sistemas</option>
-                <option>Seguridad</option>
-                <option>Finanzas</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="inputState" class="form-label fw-bold">Cargo:</label>
-            <select id="inputState" class="form-select">
-                <option selected>Vendedor</option>
-                <option>Analista de Sistemas</option>
-                <option>Gerente</option>
-                <option>Subjefe</option>
-                <option>Director Comercial</option>
-                <option>Contador</option>
-            </select>
-        </div>
-        <div class="col-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Estado
-                </label>
-            </div>
-        </div>
-
-        <hr class="bg-success border-4 border-top border-success">
-    <h4 class="fw-bold fst-italic text-secondary text-center">DATOS MÉDICOS</h4>
-    <hr class="bg-success border-4 border-top border-success">
-
-        <div class="col-md-5">
-            <label class="form-label fw-bold">Posee alguna discapacidad:</label>
-            <div class="form-check mx-auto" style="width: 200px">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                Si
-                </label>
-            </div>
-            <div class="form-check mx-auto" style="width: 200px">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                No
-                </label>
-            </div>
-        </div>
-        <div id="FITB_105" class="FITB formRender">
-            <label for="inputState" class="form-label fw-bold">Tomas algun medicamento:
-                <input type="text" class="form-textbox validate[]" style="width: 50px; max-width: 1000px;">
-                <label for="105_shorttext-3"></label>
-            </label> <b>menciona cuales</b>
-            <span data-type="textbox" data-grouptype="control_textbox" class="FITB-inptCont">
-            <input type="text" class="form-textbox " style="width: 350px; max-width: 1000px;">
-            </span>
-        </div>
-        <div class="col-12">
-            <label for="inputState" class="form-label fw-bold">Tipo de Sangre:</label>
-            <select id="inputState" class="form-select" style="width: 400px;">
-                <option selected>-------</option>
-                <option>A+</option>
-                <option>A-</option>
-                <option>B+</option>
-                <option>B-</option>
-                <option>O+</option>
-                <option>O-</option>
-                <option>AB+</option>
-                <option>AB-</option>
-            </select>
-        </div>
-        <br>
-        <div class="col-md-5">
-            <label class="form-label fw-bold">Se encuentra vacunado para COVID-19:</label>
-            <div class="form-check mx-auto" style="width: 5px">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                Si
-                </label>
-            </div>
-            <div class="form-check mx-auto" style="width: 5px">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                No
-                </label>
-            </div>
-        </div>
-    <hr class="bg-success border-4 border-top border-success">
-    <h4 class="fw-bold fst-italic text-secondary text-center">CONTACTO DE EMERGENCIA</h4>
-    <hr class="bg-success border-4 border-top border-success">
-
-        <table class="table table-info table-striped table-bordered border-dark col-md-3">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Cédula</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Parentesco</th>
-              <th scope="col">Dirección</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Maria Cornejo</td>
-              <td>0987654321</td>
-              <td>0989765456</td>
-              <td>Madre</td>
-              <td>Durán</td>
-              <td class="acciones">
-                <a href="{% url 'editarContactoEmergencias' %}">✏️</a>
-                <a href="{% url 'eliminarContactoEmergencia' %}">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Christian Ortiz</td>
-              <td>0876545789</td>
-              <td>0987654325</td>
-              <td>Padre</td>
-              <td>Durán</td>
-              <td class="acciones">
-                <a href="{% url 'editarContactoEmergencias' %}">✏️</a>
-                <a href="{% url 'eliminarContactoEmergencia' %}">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div>
-            <a class="btn btn-outline-info" href="{% url 'editarContactoEmergencias' %}">
-                         <b>➕ Agregar</b>
-            </a>
+        <div class="form-group">
+            <label class="fw-bold" >{{ form2.nombres.label }}</label>
+            {{ form2.nombres }}
         </div>
     <br>
-    <hr class="bg-success border-4 border-top border-success">
+        <div class="form-group">
+            <label class="fw-bold">{{ form2.cedula.label }}</label>
+            {{ form2.cedula }}
+        </div>
+    <br>
+        <div class="col-12">
+            <label class="fw-bold">{{ form2.telefonos.label }}</label>
+            {{ form2.telefonos }}
+        </div>
+    <br>
+        <div class="col-12">
+            <label class="fw-bold">{{ form2.parentesco.label }}</label>
+            {{ form2.parentesco }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form2.direccion.label }}</label>
+            {{ form2.direccion }}
+        </div>
+        <div>
+            <a class="btn btn-outline-info">
+                         <b>➕ Agregar</b>
+            </a>
+        </div>
+    <hr class="bg-success border-5 border-top border-success">
     <h4 class="fw-bold fst-italic text-secondary text-center">INFORMACIÓN ACADÉMICA</h4>
-    <hr class="bg-success border-4 border-top border-success">
-        <table class="table table-info table-striped table-bordered border-dark">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Fecha Inicio</th>
-              <th scope="col">Fecha Fin</th>
-              <th scope="col">Institución</th>
-              <th scope="col">Título</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>04/02/2010</td>
-              <td>15/04/2015</td>
-              <td>Universidad Estatal de Guayaquil</td>
-              <td>Ingeniero</td>
-              <td class="acciones">
-                <a href="{% url 'editarInfoAcademica' %}">✏️</a>
-                <a href="{% url 'eliminarInfoAcademica' %}">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>21/03/2016</td>
-              <td>15/10/2020</td>
-              <td>Universidad Agraria</td>
-              <td>Maestria</td>
-              <td class="acciones">
-                <a href="{% url 'editarInfoAcademica' %}">✏️</a>
-                <a href="{% url 'eliminarInfoAcademica' %}">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+    <hr class="bg-success border-5 border-top border-success">
+        <div class="col-12">
+            <label class="fw-bold">{{ form3.fecha_Inicio.label }}</label>
+            {{ form3.fecha_Inicio }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form3.fecha_Fin.label }}</label>
+            {{ form3.fecha_Fin }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form3.institucion.label }}</label>
+            {{ form3.institucion }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form3.titulo.label }}</label>
+            {{ form3.titulo }}
+        </div>
         <div>
-            <a class="btn btn-outline-info" href="{% url 'editarInfoAcademica' %}">
+            <a class="btn btn-outline-info">
                          <b>➕ Agregar</b>
             </a>
         </div>
-
-    <hr class="bg-success border-4 border-top border-success">
+    <hr class="bg-success border-5 border-top border-success">
     <h4 class="fw-bold fst-italic text-secondary text-center">CAPACITACIONES</h4>
-    <hr class="bg-success border-4 border-top border-success">
-        <table class="table table-info table-striped table-bordered border-dark">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Certificado</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Duración</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Archivo subido</td>
-              <td>15/04/2015</td>
-              <td>10 meses</td>
-              <td class="acciones">
-                <a href="{% url 'cap' %}">✏️</a>
-                <a href="{% url 'eliminarCapacitaciones' %}">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Archivo sin subir</td>
-              <td>15/10/2020</td>
-              <td>4 meses</td>
-              <td class="acciones">
-                <a href="{% url 'cap' %}">✏️</a>
-                <a href="{% url 'eliminarCapacitaciones' %}">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+    <hr class="bg-success border-5 border-top border-success">
+        <div class="col-12">
+            <label class="fw-bold">{{ form4.certificado.label }}</label>
+            {{ form4.certificado }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form4.fecha_Inicio.label }}</label>
+            {{ form4.fecha_Inicio }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form4.fecha_Fin.label }}</label>
+            {{ form4.fecha_Fin }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold">{{ form4.duracion.label }}</label>
+            {{ form4.duracion }}
+        </div>
         <div>
-            <a class="btn btn-outline-info" href="{% url 'cap' %}">
+            <a class="btn btn-outline-info">
                          <b>➕ Agregar</b>
             </a>
         </div>
 
+    <output id="idImgContenedor" style="width: 200px !important;"></output>
 {% endblock %}

@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from aplicaciones.core.models import Base, Pais, Provincia, Ciudad
 from proyecto_administrativo import settings
 from aplicaciones.ficha_personal.constantes import Opciones
@@ -70,7 +72,7 @@ class Empleado(Base):
         return '{}{}'.format(settings.STATIC_URL, 'img/default/empty.jpg')
 
 
-class ContactoEmergencias(Base):
+class ContactoEmergencias(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     nombres = models.CharField(max_length=200)
     cedula = models.CharField(max_length=10, unique=True)
@@ -86,11 +88,11 @@ class ContactoEmergencias(Base):
         verbose_name_plural = "ContactosEmergencias"
         ordering = ('id',)
 
-class InfoAcademica(Base):
+class InfoAcademica(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     fecha_Inicio = models.DateField(blank=True, null=True)
     fecha_Fin = models.DateField(blank=True, null=True)
-    institucion = models.CharField(max_length=10, unique=True)
+    institucion = models.CharField(max_length=100, unique=True)
     titulo = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
@@ -102,7 +104,7 @@ class InfoAcademica(Base):
         ordering = ('id',)
 
 
-class Capacitaciones(Base):
+class Capacitaciones(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     certificado = models.FileField(upload_to='fichaPersonal/capacitaciones', blank=True, null=True)
     fecha_Inicio = models.DateField(blank=True, null=True)
@@ -123,10 +125,12 @@ class Capacitaciones(Base):
         return '{}{}'.format(settings.STATIC_URL, 'Archivo sin subir')
 
 
-class Sueldo(Base):
+class Sueldo(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     fecha = models.DateField(blank=True, null=True)
     sueldo = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Sueldo')
+    estado = models.BooleanField(default=True)
+
 
     def __str__(self):
         return "{}".format(self.sueldo)

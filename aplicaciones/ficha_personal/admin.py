@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
-from aplicaciones.ficha_personal.models import Empleado,ContactoEmergencias,Departamento,Cargo,InfoAcademica
+from aplicaciones.ficha_personal.models import Empleado,ContactoEmergencias,Departamento,Cargo,InfoAcademica,Capacitaciones,Sueldo
 
 class EmpleadoAdmin(admin.ModelAdmin):
     list_display = (
@@ -71,3 +71,31 @@ class InfoAcademicaAdmin(admin.ModelAdmin):
         'empleado',
     )
 admin.site.register(InfoAcademica,InfoAcademicaAdmin)
+
+class CapacitacionesAdmin(admin.ModelAdmin):
+    list_display = (
+        'empleado',
+        'certificado',
+        'fecha_Inicio',
+        'fecha_Fin',
+        'duracion',
+    )
+    ordering = ('id',)
+    search_fields = ('empleado',)
+    list_filter = (
+        'empleado',
+    )
+admin.site.register(Capacitaciones,CapacitacionesAdmin)
+
+class SueldoAdmin(admin.ModelAdmin):
+    list_display = (
+        'empleado',
+        'fecha',
+        'sueldo',
+    )
+    ordering = ('id',)
+    search_fields = ('empleado',)
+    list_filter = (
+        'empleado',
+    )
+admin.site.register(Sueldo,SueldoAdmin)

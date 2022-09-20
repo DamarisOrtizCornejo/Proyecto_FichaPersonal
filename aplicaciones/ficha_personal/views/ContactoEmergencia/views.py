@@ -5,7 +5,7 @@ from aplicaciones.ficha_personal.models import ContactoEmergencias
 
 class ContactoEmergenciaListView(ListView):
     template_name = "ContactoEmergencia/listContactoEmergencia.html"
-    context_object_name = 'contactoEmergencias'
+    context_object_name = 'contactoEmergencia'
     model = ContactoEmergencias
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
@@ -29,8 +29,8 @@ class ContactoEmergenciaListView(ListView):
 
 class RegistroContactoEmergenciaListView(ListView):
     template_name = "ContactoEmergencia/registroContacto.html"
-    context_object_name = 'contactoEmergencias'
     model = ContactoEmergencias
+    context_object_name = 'contactoEmergencias'
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 

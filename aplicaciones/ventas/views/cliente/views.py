@@ -16,8 +16,8 @@ from aplicaciones.ventas.models import Cliente
 
 class ClienteListView(ListView):
     template_name = "cliente/list.html"
-    context_object_name = 'clientes'
     model = Cliente
+    context_object_name = 'clientes'
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
@@ -81,6 +81,9 @@ class EliminarCliente(DeleteView):
         context['url_anterior'] = '/venta/cliente'
         context['listar_url'] = '/venta/cliente'
         return context
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 class Opciones:
+    iva = 0.12
     def __init__(self):
         pass
     def genero(self):

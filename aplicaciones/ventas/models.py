@@ -15,8 +15,6 @@ class Cliente(Base):
     provincia = models.ForeignKey(Provincia, on_delete=models.PROTECT, blank=True, null=True)
     ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT, blank=True, null=True)
     direccion = models.TextField(blank=True, null=True, verbose_name='Dirección')
-    latitud = models.CharField(max_length=70, blank=True, null=True)
-    longitud = models.CharField(max_length=70, blank=True, null=True)
     genero = models.CharField(max_length=1, choices=GENERO,default=GENERO[0][0], blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     telefonos = models.CharField(max_length=50, blank=True, null=True)
@@ -37,7 +35,7 @@ class Cliente(Base):
             return '{}{}'.format(settings.MEDIA_URL, self.foto)
         return '{}{}'.format(settings.STATIC_URL, 'img/default/empty.jpg')
 
-class Articulo(models.Model):
+class Articulo(Base):
     descripcion = models.CharField(verbose_name='Descripcion',max_length=100,unique=True)
     alias = models.CharField(verbose_name='Alias',max_length=100,unique=True)
     codigo_barra = models.CharField(max_length=20, blank=True, null=True,unique=True)
@@ -59,15 +57,13 @@ class Articulo(models.Model):
         return self.descripcion
 
 
-class Factura(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
+class Factura(Base):
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT,null=True,blank=True)
     forma_pago = models.CharField(max_length=1,choices=FORMA_PAGO,default=FORMA_PAGO[0][0])
-    fecha = models.DateTimeField(default=now)
+    fecha = models.DateField(default=now)
     subtotal = models.DecimalField(default=0, max_digits=16, decimal_places=2)
     iva = models.DecimalField(default=0, max_digits=16, decimal_places=2)
     total = models.DecimalField(default=0, max_digits=16, decimal_places=2)
-    pagado = models.DecimalField(default=0, max_digits=16, decimal_places=2, blank=True, null=True)
-    cambio = models.DecimalField(default=0, max_digits=16, decimal_places=2, blank=True, null=True)
     estado = models.BooleanField(default=True)
 
     def __str__(self):
@@ -104,4 +100,5 @@ class FacturaDetalle(models.Model):
         verbose_name = "Factura Detalle"
         verbose_name_plural = "Factura Detalles"
         ordering = ('factura',)
+
 

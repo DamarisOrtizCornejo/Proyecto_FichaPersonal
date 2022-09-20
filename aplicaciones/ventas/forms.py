@@ -11,6 +11,7 @@ class ClienteForm(ModelForm):
     class Meta:
         model = Cliente
         fields = '__all__'
+        exclude=['usuario']
         widgets = {
             'ruc': forms.TextInput(attrs={'class': 'form-control','placeholder':'ingrese ruc'}),
             'nombres': forms.TextInput(attrs={'class': 'form-control'}),
@@ -32,7 +33,7 @@ class ClienteForm(ModelForm):
 
 class VentaForm(ModelForm):
     def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)   # Llama al constructor de la clase Base
+        super().__init__(*args,**kwargs)
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
@@ -45,8 +46,8 @@ class VentaForm(ModelForm):
         fields = '__all__'
         widgets = {
           'fecha': forms.DateInput(
-                         format=('%d/%m/%Y'),
-                         attrs={'class': 'form-control','value': datetime.now().strftime('%d/%m/%Y'),}
+                         format=('%Y-%m-%d'),
+                         attrs={'class': 'form-control','value': datetime.now().strftime('%Y-%m-%d'),}
           ),
         }
 

@@ -28,20 +28,20 @@
 {% endblock %}
 
 {% block rows %}
-    {% for object in empleados %}
+    {% for emp in empleados %}
         <tr class="align-middle table-warning">
-            <td>{{ object.id }}</td>
-            <td>{{ object.nombres }}</td>
-            <td>{{ object.cedula }}</td>
-            <td>{{ object.direccion }}</td>
-            <td>{{ object.telefonos }}</td>
-            <td>{{ object.email }}</td>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.nombres }}</td>
+            <td>{{ emp.cedula }}</td>
+            <td>{{ emp.direccion }}</td>
+            <td>{{ emp.telefonos }}</td>
+            <td>{{ emp.email }}</td>
             <td class="text-center">
-                <img width="70" src="{{ object.get_image }}" alt="Sin Foto">
+                <img width="70" src="{{ emp.get_image }}" alt="Sin Foto">
             </td>
             <td class="acciones">
-                <a href="{% url 'ficha_Personal:actualizarempleado' object.id %}">✏️</a>
-                <a href="{% url 'ficha_Personal:deleteempleado' object.id %}">❌</a>
+                <a href="{% url 'ficha_Personal:actualizarempleado' emp.id %}">✏️</a>
+                <a href="{% url 'ficha_Personal:deleteempleado' emp.id %}">❌</a>
             </td>
         </tr>
     {% endfor %}

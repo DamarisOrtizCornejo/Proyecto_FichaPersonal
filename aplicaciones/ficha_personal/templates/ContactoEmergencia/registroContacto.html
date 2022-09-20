@@ -19,18 +19,18 @@
             </thead>
     {% endblock %}
     {% block rows %}
-        {% for object in contactoEmergencia %}
+        {% for contaEmer in contactoEmergencias %}
             <tbody>
                 <tr class="align-middle table-warning">
-                    <td>{{ object.id }}</td>
-                    <td>{{ object.nombres }}</td>
-                    <td>{{ object.cedula }}</td>
-                    <td>{{ object.telefonos }}</td>
-                    <td>{{ object.parentesco }}</td>
-                    <td>{{ object.direccion }}</td>
+                    <td>{{ contaEmer.id }}</td>
+                    <td>{{ contaEmer.nombres }}</td>
+                    <td>{{ contaEmer.cedula }}</td>
+                    <td>{{ contaEmer.telefonos }}</td>
+                    <td>{{ contaEmer.parentesco }}</td>
+                    <td>{{ contaEmer.direccion }}</td>
                     <td class="acciones">
-                        <a href="{% url 'ficha_Personal:actualizarContactoEmergencia' object.id %}">✏️</a>
-                        <a href="{% url 'ficha_Personal:deleteContactoEmergencia' object.id %}">❌</a>
+                        <a href="{% url 'ficha_Personal:actualizarContactoEmergencia' contaEmer.id %}">✏️</a>
+                        <a href="{% url 'ficha_Personal:deleteContactoEmergencia' contaEmer.id %}">❌</a>
                     </td>
                 </tr>
             </tbody>

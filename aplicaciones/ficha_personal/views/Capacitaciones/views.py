@@ -5,7 +5,7 @@ from aplicaciones.ficha_personal.models import Capacitaciones
 
 class CapacitacionesListView(ListView):
     template_name = "Capacitaciones/listCapacitaciones.html"
-    context_object_name = 'capacitaciones'
+    context_object_name = 'capacitacion'
     model = Capacitaciones
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
@@ -30,6 +30,7 @@ class CapacitacionesListView(ListView):
 class RegistroCapacitacionesListView(ListView):
     template_name = "Capacitaciones/registroCapacitaciones.html"
     context_object_name = 'capacitaciones'
+    success_url = reverse_lazy('ficha_Personal:capacitaciones')
     model = Capacitaciones
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
@@ -38,7 +39,7 @@ class RegistroCapacitacionesListView(ListView):
         query = self.request.GET.get("query")
         print(query)
         if query:
-            return self.model.objects.filter(nombres__icontains=query)
+            return self.model.objects.filter(empleado__icontains=query)
         else:
             return self.model.objects.all()
 
