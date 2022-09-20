@@ -14,7 +14,7 @@ class ContactoEmergenciaListView(ListView):
         query = self.request.GET.get("query")
         print(query)
         if query:
-            return self.model.objects.filter(nombres__icontains=query)
+            return self.model.objects.filter(empleado_id__icontains=query)
         else:
             return self.model.objects.all()
 
@@ -38,7 +38,7 @@ class RegistroContactoEmergenciaListView(ListView):
         query = self.request.GET.get("query")
         print(query)
         if query:
-            return self.model.objects.filter(nombres__icontains=query)
+            return self.model.objects.filter(empleado_id__icontains=query)
         else:
             return self.model.objects.all()
 

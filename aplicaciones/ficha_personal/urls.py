@@ -27,7 +27,7 @@ urlpatterns = [
     path('eliminardepartamento/<int:pk>/', EliminarDepartamento.as_view(), name='deletedepartamento'),
 
     path('contactoEmergencia', ContactoEmergenciaListView.as_view(), name='contactoEmergencia'),
-    path('registroContactoEmergencia', RegistroContactoEmergenciaListView.as_view(), name='registroContactoEmergencia'),
+    path('registroContactoEmergencia/<int:pk>/', RegistroContactoEmergenciaListView.as_view(), name='registroContactoEmergencia'),
     path('crearContactoEmergencia/', CrearContactoEmergencia.as_view(), name='crearContactoEmergencia'),
     path('actualizaContactoEmergencia/<int:pk>/', ActualizarContactoEmergencia.as_view(), name='actualizarContactoEmergencia'),
     path('eliminarContactoEmergencia/<int:pk>/', EliminarContactoEmergencia.as_view(), name='deleteContactoEmergencia'),

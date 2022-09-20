@@ -29,7 +29,7 @@
             <tr class="align-middle table-warning text-center">
                 <td>{{ contaEmer.empleado }}</td>
                 <td class="acciones">
-                    <a href="{% url 'ficha_Personal:registroContactoEmergencia' %}">🔎️ Ver información</a>
+                    <a href="{% url 'ficha_Personal:registroContactoEmergencia' contaEmer.empleado_id %}">🔎️ Ver información</a>
                 </td>
             </tr>
 
