@@ -12,6 +12,7 @@ class ClienteForm(ModelForm):
         model = Cliente
         fields = '__all__'
         exclude=['usuario']
+
         widgets = {
             'ruc': forms.TextInput(attrs={'class': 'form-control','placeholder':'ingrese ruc'}),
             'nombres': forms.TextInput(attrs={'class': 'form-control'}),
@@ -50,4 +51,5 @@ class VentaForm(ModelForm):
                          attrs={'class': 'form-control','value': datetime.now().strftime('%Y-%m-%d'),}
           ),
         }
+
 

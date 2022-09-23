@@ -1,14 +1,23 @@
 from proyecto_administrativo.wsgi import get_wsgi_application
-from aplicaciones.ventas.models import Cliente
-#from django.db.models import Q, Avg,Sum,Count
-#from aplicaciones.core.models import Linea,Grupo
-print("python")
-# from django.contrib.auth.models import User
-#print(User.objects.all())
-# mostrar todos los registros
-# Insertar registros con create()
-#Linea.objects.create(descripcion="Rio Store")
-#Linea.objects.create(descripcion="Mi Comisariato")
+from aplicaciones.ficha_personal.models import Empleado,ContactoEmergencias,InfoAcademica,Capacitaciones
+
+
+ContactoEmergencias.objects.all()
+ContactoEmergencias.objects.filter(empleado_id=True)
+
+# .values('campo requerido').all()  :trae tods los datos del campo puesto
+# .order_by('')           : ordenar
+# [: ]                    : limitar o cortar listas
+# .objects.all().first    : primer objeto
+# .objects.all().last     : ultimo objeto
+# __gte= 4                : mas alto que  (mayor igual)
+# __lte= 4                : menos que     (menor igual)
+# __startswith='M'        : empieza por
+# __iendswith='Joel'      : termina por
+# __istartswith='M'       : la i significa q no distinga de mayuscula y minuscula
+# __contains='M'          : q contenga dicha letra
+
+
 
 # Insertar registros con intancias del modelo
 """p = Linea()
@@ -101,17 +110,3 @@ print(Linea.objects.values("id","estado"))
 #
 # print(gru2)
 #print(Linea.objects.get(id=4).grupos.filter(id__gte=7))
-from weasyprint import HTML
-from django.template.loader import get_template
-
-def impresion():
-    template= get_template("factur.html")
-    clientes = get_clientes()
-    context={"titulo":"LISTADO DE CLIENTES","clientes":clientes}
-    html_template = template.render(context)
-    HTML(string=html_template).write_pdf(target="clientes.pdf")
-
-def get_clientes():
-    clientes = Cliente.objects.all()
-    return clientes
-impresion()

@@ -47,7 +47,7 @@
                 {% endif %}
             </td>
             <td class="acciones">
-                <a href="{% url 'ventas:actualizarcliente' fac.id %}">✏️</a>
+                <a href="{% url 'ventas:editarventa' fac.id %}">✏️</a>
                 <a href="{% url 'ventas:deletecliente' fac.id %}">❌</a>
             </td>
 
@@ -55,3 +55,4 @@
     {% endfor %}
 
 {% endblock %}
+

@@ -21,15 +21,15 @@ admin.site.register(Empleado,EmpleadoAdmin)
 class ContactoEmergenciaAdmin(admin.ModelAdmin):
     list_display = (
         'cedula',
-        'nombres',
+        'nombre',
         'telefonos',
         'parentesco',
         'direccion',
     )
     ordering = ('id',)
-    search_fields = ('cedula', 'nombres',)
+    search_fields = ('cedula', 'nombre',)
     list_filter = (
-        'nombres',
+        'nombre',
     )
 admin.site.register(ContactoEmergencias,ContactoEmergenciaAdmin)
 
@@ -87,15 +87,14 @@ class CapacitacionesAdmin(admin.ModelAdmin):
     )
 admin.site.register(Capacitaciones,CapacitacionesAdmin)
 
-class SueldoAdmin(admin.ModelAdmin):
-    list_display = (
-        'empleado',
-        'fecha',
-        'sueldo',
-    )
-    ordering = ('id',)
-    search_fields = ('empleado',)
-    list_filter = (
-        'empleado',
-    )
-admin.site.register(Sueldo,SueldoAdmin)
+# class SueldoAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'fecha',
+#         'sueldo',
+#     )
+#     ordering = ('id',)
+#     search_fields = ('empleado',)
+#     list_filter = (
+#         'empleado',
+#     )
+# admin.site.register(Sueldo,SueldoAdmin)

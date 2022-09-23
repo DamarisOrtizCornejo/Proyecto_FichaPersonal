@@ -1,4 +1,4 @@
-{% extends 'consultaFicha.html' %}
+{% extends 'consulta.html' %}
 {% load static %}
 
 {% block js %}
@@ -16,7 +16,7 @@
 
 {% block columns %}
     <thead>
-        <tr class="align-middle table-success text-center">
+        <tr class="align-middle table-success text-center table-bordered border-dark">
             <th scope="col" style="width: 25px;">Empleado</th>
             <th scope="col" style="width: 10%;">Opciones</th>
         </tr>
@@ -26,7 +26,7 @@
 {% block rows %}
     {% for contaEmer in contactoEmergencia %}
         <tbody>
-            <tr class="align-middle table-warning text-center">
+            <tr class="align-middle table-warning text-center table-bordered border-dark">
                 <td>{{ contaEmer.empleado }}</td>
                 <td class="acciones">
                     <a href="{% url 'ficha_Personal:registroContactoEmergencia' contaEmer.empleado_id %}">🔎️ Ver información</a>

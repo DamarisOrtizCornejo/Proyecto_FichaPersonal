@@ -22,9 +22,9 @@
 {% endblock %}
 
 {% block rows %}
-     {% for object in infoAcademica %}
+     {% for infoAcade in infoAcademica %}
           <tr class="align-middle table-warning text-center">
-          <td>{{ object.empleado }}</td>
+          <td>{{ object.infoAcademica }}</td>
               <td class="acciones">
                   <a href="{% url 'ficha_Personal:registroInfoAcademica' %}">🔎️ Ver información</a>
               </td>

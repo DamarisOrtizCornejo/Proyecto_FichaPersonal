@@ -59,6 +59,8 @@ class CrearEmpleado(CreateView):
         form4 = self.fourth_form_class(request.POST)
         if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():
             solicitud = form.save(commit=False)
+            solicitud.empleado = form2.save(commit=False)
+            solicitud.empleado = form3.save(commit=False)
             solicitud.empleado = form4.save()
             solicitud.save()
             return HttpResponseRedirect(self.get_success_url())

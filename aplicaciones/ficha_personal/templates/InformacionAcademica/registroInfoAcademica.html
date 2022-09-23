@@ -5,7 +5,8 @@
     <h4 class="fw-bold fst-italic text-secondary text-center">INFORMACION ACADEMICA</h4>
     <hr class="bg-success border-4 border-top border-success">
     <table class="table table-info table-striped table-bordered border-dark">
-          <thead>
+    {% block columns %}
+        <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Fecha Inicio</th>
@@ -15,38 +16,24 @@
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>04/02/2010</td>
-              <td>15/04/2015</td>
-              <td>Universidad Estatal de Guayaquil</td>
-              <td>Ingeniero</td>
-              <td class="acciones">
-                <a href="#">✏️</a>
-                <a href="#">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>21/03/2016</td>
-              <td>15/10/2020</td>
-              <td>Universidad Agraria</td>
-              <td>Maestria</td>
-              <td class="acciones">
-                <a href="#">✏️</a>
-                <a href="#">❌</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
+    {% endblock %}
+    {% block rows %}
+        {% for infoAcade in infoAcademicas %}
+            <tbody>
+                <tr class="align-middle table-info table-bordered border-dark text-center">
+                    <td>{{ infoAcade.id }}</td>
+                    <td>{{ infoAcade.fecha_Inicio }}</td>
+                    <td>{{ infoAcade.fecha_Fin }}</td>
+                    <td>{{ infoAcade.institucion }}</td>
+                    <td>{{ infoAcade.titulo }}</td>
+                    <td class="acciones">
+                        <a href="{% url 'ficha_Personal:actualizarContactoEmergencia' contaEmer.id %}">✏️</a>
+                        <a href="{% url 'ficha_Personal:deleteContactoEmergencia' contaEmer.id %}">❌</a>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endblock %}
         </table>
 
 {% endblock %}

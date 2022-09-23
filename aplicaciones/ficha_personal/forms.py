@@ -63,7 +63,8 @@ class ContactoEmergenciasForm(ModelForm):
         model = ContactoEmergencias
         fields = '__all__'
         widgets = {
-            'nombres': forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Ingrese nombre'}),
+            'empleado': forms.Select(attrs={'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Ingrese nombre'}),
             'cedula': forms.TextInput(attrs={'class': 'form-control','placeholder':'Ingrese su número de cédula'}),
             'telefonos': forms.TextInput(attrs={'class': 'form-control','placeholder':'Número celular'}),
             'parentesco': forms.Select(attrs={'class': 'form-control'}),

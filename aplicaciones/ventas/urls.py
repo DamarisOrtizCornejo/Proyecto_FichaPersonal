@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views.cliente.views import ClienteListView, CrearCliente, ActualizarCliente, EliminarCliente
 from .views.menu.views import MenuTemplateView
-from .views.venta.views import ConsultaVenta, CrearVenta
+from .views.venta.views import ConsultaVenta, CrearVenta, EditarVenta
 
 app_name = "ventas"
 urlpatterns = [
@@ -15,4 +15,6 @@ urlpatterns = [
     path('menu', MenuTemplateView.as_view(), name="menu"),
     path('consulta/', ConsultaVenta.as_view(), name='consultaventa'),
     path('crear/', CrearVenta.as_view(), name='crearventa'),
+    path('editar/<int:pk>/', EditarVenta.as_view(), name='editarventa'),
 ]
+

@@ -67,6 +67,8 @@
                         </h3>
                     </div>
                     <div class="card-body table-responsive">
+                        <input type="hidden" name="action" value="{{ action }}">
+
                         <div class="form-group ">
                             <label class="h6">Fecha</label>
                             {{ form.fecha }}
@@ -128,7 +130,9 @@
    <script  type="text/javascript" >
       var ivas = {{iva|stringformat:"f"}}
       var save = '{{ action_save }}'
-      //console.log(ivas)
+      var detfac = {{ detalle|safe }}
+      console.log(detfac)
    </script>
    <script  type="text/javascript" src="{% static 'js/venta.js' %}"></script>
 {% endblock %}
+

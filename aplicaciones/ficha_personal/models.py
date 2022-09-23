@@ -37,6 +37,7 @@ class Departamento(models.Model):
         verbose_name_plural = "Departamentos"
         ordering = ('id',)
 
+
 class Empleado(Base):
     nombres = models.CharField(max_length=200)
     cedula = models.CharField(max_length=10, unique=True)
@@ -58,6 +59,7 @@ class Empleado(Base):
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT,blank=True, null=True)
     estado = models.BooleanField(default=True)
 
+
     def __str__(self):
         return "{} - {}".format(self.cedula, self.nombres)
 
@@ -73,15 +75,15 @@ class Empleado(Base):
 
 
 class ContactoEmergencias(models.Model):
-    empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
-    nombres = models.CharField(max_length=200)
+    empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT,blank=True, null=True)
+    nombre = models.CharField(max_length=200)
     cedula = models.CharField(max_length=10, unique=True)
     telefonos = models.CharField(max_length=50, blank=True, null=True)
     parentesco = models.CharField(max_length=2, choices=PARENTESCO, default=PARENTESCO[0][0], blank=True, null=True)
     direccion = models.TextField(blank=True, null=True, verbose_name='Dirección')
 
     def __str__(self):
-        return "{} - {}".format(self.cedula, self.nombres)
+        return "{} - {}".format(self.cedula, self.nombre)
 
     class Meta:
         verbose_name = "ContactoEmergencia"
@@ -92,24 +94,23 @@ class InfoAcademica(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     fecha_Inicio = models.DateField(blank=True, null=True)
     fecha_Fin = models.DateField(blank=True, null=True)
-    institucion = models.CharField(max_length=100, unique=True)
+    institucion = models.CharField(max_length=100, blank=True, null=True)
     titulo = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return "{}".format(self.empleado)
+        return "{}".format(self.institucion)
 
     class Meta:
         verbose_name = "InfoAcademica"
         verbose_name_plural = "InfoAcademicas"
         ordering = ('id',)
 
-
 class Capacitaciones(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     certificado = models.FileField(upload_to='fichaPersonal/capacitaciones', blank=True, null=True)
     fecha_Inicio = models.DateField(blank=True, null=True)
     fecha_Fin = models.DateField(blank=True, null=True)
-    duracion = models.CharField(max_length=10, unique=True)
+    duracion = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.id)
@@ -123,7 +124,6 @@ class Capacitaciones(models.Model):
         if self.certificado:
             return '{}{}'.format(settings.MEDIA_URL, self.certificado)
         return '{}{}'.format(settings.STATIC_URL, 'Archivo sin subir')
-
 
 class Sueldo(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
@@ -139,6 +139,3 @@ class Sueldo(models.Model):
         verbose_name = "Sueldo"
         verbose_name_plural = "Sueldos"
         ordering = ('id',)
-
-
-

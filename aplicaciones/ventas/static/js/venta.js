@@ -12,6 +12,20 @@ class Venta{
             articulos: []
         }
     }
+     editar(detalle){
+         this.items.articulos = detalle.map(item => {
+            item.id = item.id
+            item.descripcion=item.descripcion
+            item.cantidad = parseFloat(item.cantidad)
+            item.precio = parseFloat(item.precio)
+            item.subtotal = parseFloat(item.subtotal)
+            item.iva = parseFloat(item.iva)
+            item.total = parseFloat(item.total)
+            return item
+       })
+       this.totales()
+       this.presentar()
+     }
      agregar(articulo){
        let cantidad = parseFloat(articulo.cantidad)
        let precio =  articulo.precio
@@ -87,6 +101,7 @@ class Venta{
         this.items.fecha = document.getElementById('id_fecha').value
         this.items.cliente = document.getElementById('id_cliente').value
         this.items.forma_pago = document.getElementById('id_forma_pago').value
+        this.items.action=document.querySelector('[name=action]').value
         console.log(this.items)
         let csrf = document.querySelector('[name=csrfmiddlewaretoken]').value
         console.log(csrf)
@@ -104,7 +119,7 @@ class Venta{
                 body: JSON.stringify(this.items)
                });
             const post = await res.json();
-              console.log(post);
+              console.log(post.grabar);
               alert("Factura grabada Satisfactoriamente")
 
           } catch (error) {
@@ -123,8 +138,15 @@ class Venta{
 }
 document.addEventListener("DOMContentLoaded", e => {
    console.log("Pagina cargada")
+
    let iva = parseFloat(ivas)
    let venta = new Venta(iva,save)
+
+   if (document.querySelector('[name=action]').value== 'add') {
+     document.getElementById('id_cliente').value=1
+   }else{
+     venta.editar(detfac)
+   }
    //delegacion de eventos: el objeto que origina el evento coincide con el metodo matches() ejcuta el codigo
    document.addEventListener('click',(e) => {
         if (e.target.matches("#btnArticulos")){
@@ -156,6 +178,9 @@ document.addEventListener("DOMContentLoaded", e => {
       }
    })
 });
+
+
+
 
 
 

@@ -21,18 +21,18 @@
     {% block rows %}
         {% for contaEmer in contactoEmergencias %}
             <tbody>
-                <tr class="align-middle table-warning">
-                    <td>{{ contaEmer.id }}</td>
-                    <td>{{ contaEmer.nombres }}</td>
-                    <td>{{ contaEmer.cedula }}</td>
-                    <td>{{ contaEmer.telefonos }}</td>
-                    <td>{{ contaEmer.parentesco }}</td>
-                    <td>{{ contaEmer.direccion }}</td>
-                    <td class="acciones">
-                        <a href="{% url 'ficha_Personal:actualizarContactoEmergencia' contaEmer.id %}">✏️</a>
-                        <a href="{% url 'ficha_Personal:deleteContactoEmergencia' contaEmer.id %}">❌</a>
-                    </td>
-                </tr>
+            <tr class="align-middle table-info table-bordered border-dark text-center">
+                <td>{{ contaEmer.id }}</td>
+                <td>{{ contaEmer.nombre }}</td>
+                <td>{{ contaEmer.cedula }}</td>
+                <td>{{ contaEmer.telefonos }}</td>
+                <td>{{ contaEmer.parentesco }}</td>
+                <td>{{ contaEmer.direccion }}</td>
+                <td class="acciones">
+                    <a href="{% url 'ficha_Personal:actualizarContactoEmergencia' contaEmer.id %}">✏️</a>
+                    <a href="{% url 'ficha_Personal:deleteContactoEmergencia' contaEmer.id %}">❌</a>
+                </td>
+            </tr>
             </tbody>
         {% endfor %}
     {% endblock %}

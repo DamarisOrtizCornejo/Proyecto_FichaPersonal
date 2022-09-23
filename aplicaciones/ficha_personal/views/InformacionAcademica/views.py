@@ -29,7 +29,7 @@ class InfoAcademicaListView(ListView):
 
 class RegistroInfoAcademicaListView(ListView):
     template_name = "InformacionAcademica/registroInfoAcademica.html"
-    context_object_name = 'infoAcademica'
+    context_object_name = 'infoAcademicas'
     model = InfoAcademica
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)

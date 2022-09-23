@@ -20,8 +20,77 @@
 
     <h4 class="fw-bold fst-italic text-secondary text-center">DATOS PERSONALES</h4>
     <hr class="bg-success border-5 border-top border-success">
-        <div class="form-group fw-bold">
-            {{ form.as_p }}
+        <div class="form-group">
+            <label class="fw-bold" >Nombre:</label>
+            {{ form.nombres }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Cedula:</label>
+            {{ form.cedula }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Fecha Nacimiento:</label>
+            {{ form.fecha_nacimiento }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Género:</label>
+            {{ form.genero }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >País:</label>
+            {{ form.pais }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Provincia:</label>
+            {{ form.provincia }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Ciudad:</label>
+            {{ form.ciudad }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Estado Civil:</label>
+            {{ form.estado_civil }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Dirección:</label>
+            {{ form.direccion }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Teléfono:</label>
+            {{ form.telefono }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Fecha IESS:</label>
+            {{ form.fecha_IESS }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Tipo Contrato:</label>
+            {{ form.tipo_Contrato }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Fecha Ingreso:</label>
+            {{ form.fecha_Ingreso }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Foto:</label>
+            {{ form.foto }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Cargo:</label>
+            {{ form.cargo }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Departamento:</label>
+            {{ form.departamento }}
+        </div>
+        <div class="form-group">
+            <label class="fw-bold" >Estado</label>
+            {{ form.estado }}
         </div>
     <hr class="bg-success border-5 border-top border-success">
     <h4 class="fw-bold fst-italic text-secondary text-center">CONTACTO DE EMERGENCIAS</h4>
@@ -29,7 +98,7 @@
 
         <div class="form-group">
             <label class="fw-bold" >Nombre:</label>
-            {{ form2.nombres }}
+            {{ form2.nombre }}
         </div>
     <br>
         <div class="form-group">

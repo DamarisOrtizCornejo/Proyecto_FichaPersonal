@@ -1,11 +1,12 @@
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, DeleteView, UpdateView
 from aplicaciones.ficha_personal.forms import ContactoEmergenciasForm
-from aplicaciones.ficha_personal.models import ContactoEmergencias
+from aplicaciones.ficha_personal.models import ContactoEmergencias,Empleado
 
 class ContactoEmergenciaListView(ListView):
     template_name = "ContactoEmergencia/listContactoEmergencia.html"
     context_object_name = 'contactoEmergencia'
+    success_url = reverse_lazy('ficha_Personal:contactoEmergencia')
     model = ContactoEmergencias
     paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
@@ -14,7 +15,7 @@ class ContactoEmergenciaListView(ListView):
         query = self.request.GET.get("query")
         print(query)
         if query:
-            return self.model.objects.filter(empleado_id__icontains=query)
+            return self.model.objects.filter(empleado__nombres=query)
         else:
             return self.model.objects.all()
 
@@ -32,15 +33,15 @@ class RegistroContactoEmergenciaListView(ListView):
     model = ContactoEmergencias
     context_object_name = 'contactoEmergencias'
     paginate_by = 3
-    #queryset = Cliente.objects.filter(estado=True)
+    # queryset = ContactoEmergencias.objects.filter(empleado__id=2)
+    # queryset = ContactoEmergencias.objects.filter(id=1)
+    # queryset = Empleado.objects.filter(id=1)
 
-    def get_queryset(self):
-        query = self.request.GET.get("query")
-        print(query)
-        if query:
-            return self.model.objects.filter(empleado_id__icontains=query)
-        else:
-            return self.model.objects.all()
+    # def get_queryset(self):
+    #     if :
+    #         return self.model2.objects.filter(id=Empleado)
+    #     else:
+    #         return self.model.objects.filter(empleado__id=ContactoEmergencias)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,7 +70,7 @@ class CrearContactoEmergencia(CreateView):
 class ActualizarContactoEmergencia(UpdateView):
     model = ContactoEmergencias
     template_name = "ContactoEmergencia/form.html"
-    success_url = reverse_lazy('ficha_Personal:actualizarContactoEmergencia')
+    success_url = reverse_lazy('ficha_Personal:registroContactoEmergencia')
     form_class = ContactoEmergenciasForm
     #queryset = Cliente.objects.get(pk=request.GET.get("id"))
 
