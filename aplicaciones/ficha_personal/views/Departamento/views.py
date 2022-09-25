@@ -7,7 +7,7 @@ class DepartamentoListView(ListView):
     template_name = "Departamento/listDepartamentos.html"
     context_object_name = 'departamentos'
     model = Departamento
-    paginate_by = 3
+    paginate_by = 5
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -21,7 +21,7 @@ class DepartamentoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
-        context['listar_url']= '/departamento',
+        context['listar_url']= '/fichaPersonal/departamento'
         context['crear_url'] = '/fichaPersonal/creardepartamento/'
         context['titulo'] = 'LISTADO DE DEPARTAMENTOS'
         context['query'] = self.request.GET.get("query") or ""

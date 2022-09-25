@@ -23,7 +23,7 @@ class Opciones:
         return TIPO_SANGRE
 
     def parentesco(self):
-        PARENTESCO = (('M','Madre'),('P','Padre'),('H','Hermano(a)'),('A','Abuelo(a)'),('T','Tio(a)'),('P','Primo(a)'),('S','Sobrino(a)'),('C','Cuñado(a)'),('Pd','Padrastro'),('Md','Madrastra'),('Co','Conyuge'),('Hi','Hijo(a)'),('O','Otros'),
+        PARENTESCO = (('M','Madre'),('P','Padre'),('H','Hermano(a)'),('A','Abuelo(a)'),('T','Tio(a)'),('Pr','Primo(a)'),('S','Sobrino(a)'),('C','Cuñado(a)'),('Pd','Padrastro'),('Md','Madrastra'),('Co','Conyuge'),('Hi','Hijo(a)'),('O','Otros'),
         )
         return PARENTESCO
 

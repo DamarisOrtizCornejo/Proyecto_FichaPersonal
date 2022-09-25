@@ -22,7 +22,7 @@
         {% for contaEmer in contactoEmergencias %}
             <tbody>
             <tr class="align-middle table-info table-bordered border-dark text-center">
-                <td>{{ contaEmer.id }}</td>
+                <td>{{forloop.counter}}</td>
                 <td>{{ contaEmer.nombre }}</td>
                 <td>{{ contaEmer.cedula }}</td>
                 <td>{{ contaEmer.telefonos }}</td>

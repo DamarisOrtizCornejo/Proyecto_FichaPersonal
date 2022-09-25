@@ -2,8 +2,16 @@ from proyecto_administrativo.wsgi import get_wsgi_application
 from aplicaciones.ficha_personal.models import Empleado,ContactoEmergencias,InfoAcademica,Capacitaciones
 
 
-ContactoEmergencias.objects.all()
-ContactoEmergencias.objects.filter(empleado_id=True)
+# queryset = Empleado.objects.get(id=4).contactos.all()
+
+# print(ContactoEmergencias.objects.all())
+# print(ContactoEmergencias.objects.filter(empleado_id=True))
+"""Relacion inversa"""
+# print(Empleado.objects.get(id=1).contactos.filter(id__get=2))
+# print(Empleado.objects.get(id=2).contactos.all())
+
+# print(ContactoEmergencias.objects.filter(id=1,empleado_id=1))
+
 
 # .values('campo requerido').all()  :trae tods los datos del campo puesto
 # .order_by('')           : ordenar

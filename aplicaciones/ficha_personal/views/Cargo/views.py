@@ -7,7 +7,7 @@ class CargoListView(ListView):
     template_name = "Cargo/listCargos.html"
     context_object_name = 'cargo'
     model = Cargo
-    paginate_by = 3
+    paginate_by = 5
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -21,8 +21,8 @@ class CargoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
-        context['listar_url']= '/cargo',
-        context['crear_url'] = '/fichaPersonal/crearcargo/'
+        context['listar_url']= '/fichaPersonal/cargo'
+        context['crear_url'] = '/fichaPersonal/crearcargo'
         context['titulo'] = 'LISTADO DE CARGOS'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -36,7 +36,7 @@ class CrearCargo(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['action_save'] = '/fichaPersonal/crearcargo/'
+        context['action_save'] = '/fichaPersonal/crearcargo'
         context['titulo'] = 'CREAR CARGO'
         context['url_anterior'] = '/fichaPersonal/cargo'
         context['listar_url'] = '/fichaPersonal/cargo'

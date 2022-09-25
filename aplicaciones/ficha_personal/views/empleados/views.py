@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, DeleteView, UpdateView
-from aplicaciones.ficha_personal.forms import EmpleadoForm, ContactoEmergenciasForm, InfoAcademicaForm,CapacitacionesForm
+from aplicaciones.ficha_personal.forms import EmpleadoForm, ContactoEmergenciasForm, InfoAcademicaForm,CapacitacionesForm,SueldoForm
 from aplicaciones.ficha_personal.models import Empleado, ContactoEmergencias, InfoAcademica, Capacitaciones
 
 class EmpleadoListView(ListView):
@@ -22,7 +22,7 @@ class EmpleadoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
-        context['listar_url']= '/empleado',
+        context['listar_url']= '/fichaPersonal/empleado'
         context['crear_url'] = '/fichaPersonal/crearempleado/'
         context['titulo'] = 'LISTADO DE EMPLEADOS'
         context['query'] = self.request.GET.get("query") or ""
@@ -34,9 +34,10 @@ class CrearEmpleado(CreateView):
     listar_url = '/fichaPersonal/empleado'
     success_url = reverse_lazy('ficha_Personal:empleado')
     form_class = EmpleadoForm
-    second_form_class = ContactoEmergenciasForm
-    third_form_class = InfoAcademicaForm
-    fourth_form_class = CapacitacionesForm
+    second_form_class = SueldoForm
+    third_form_class = ContactoEmergenciasForm
+    fourth_form_class = InfoAcademicaForm
+    fifth_form_class = CapacitacionesForm
 
     def get_context_data(self, **kwargs):
         context = super(CrearEmpleado, self).get_context_data(**kwargs)
@@ -49,6 +50,8 @@ class CrearEmpleado(CreateView):
             context['form3'] = self.third_form_class(self.request.GET)
         if 'form4' not in context:
             context['form4'] = self.fourth_form_class(self.request.GET)
+        if 'form5' not in context:
+            context['form5'] = self.fifth_form_class(self.request.GET)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -57,15 +60,17 @@ class CrearEmpleado(CreateView):
         form2 = self.second_form_class(request.POST)
         form3 = self.third_form_class(request.POST)
         form4 = self.fourth_form_class(request.POST)
-        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():
+        form5 = self.fifth_form_class(request.POST)
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid() and form5.is_valid():
             solicitud = form.save(commit=False)
             solicitud.empleado = form2.save(commit=False)
             solicitud.empleado = form3.save(commit=False)
-            solicitud.empleado = form4.save()
+            solicitud.empleado = form4.save(commit=False)
+            solicitud.empleado = form5.save()
             solicitud.save()
             return HttpResponseRedirect(self.get_success_url())
         else:
-            return self.render_to_response(self.get_context_data(form=form, form2=form2, form3=form3, form4=form4))
+            return self.render_to_response(self.get_context_data(form=form, form2=form2, form3=form3, form4=form4, form5=form5))
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -107,7 +112,7 @@ class ActualizarEmpleado(UpdateView):
         context = super().get_context_data(**kwargs)
         context['action_save'] = self.request.path
         context['titulo'] = 'ACTUALIZAR DE EMPLEADO'
-        context['url_anterior'] = '/fichaPersonal/empleado'
+        context['url_anterior'] = 'fichaPersonal/empleado'
         context['listar_url'] = '/fichaPersonal/empleado'
         return context
 

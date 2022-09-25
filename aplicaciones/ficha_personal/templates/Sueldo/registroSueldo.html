@@ -9,26 +9,24 @@
         <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Fecha Inicio</th>
-              <th scope="col">Fecha Fin</th>
-              <th scope="col">Institución</th>
-              <th scope="col">Título</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Sueldo</th>
+              <th scope="col">Estado</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
     {% endblock %}
     {% block rows %}
-        {% for infoAcade in infoAcademicas %}
+        {% for sue in sueldos %}
             <tbody>
                 <tr class="align-middle table-info table-bordered border-dark text-center">
-                    <td>{{forloop.counter}}</td>
-                    <td>{{ infoAcade.fecha_Inicio }}</td>
-                    <td>{{ infoAcade.fecha_Fin }}</td>
-                    <td>{{ infoAcade.institucion }}</td>
-                    <td>{{ infoAcade.titulo }}</td>
+                    <td>{{ forloop.counter}}</td>
+                    <td>{{ sue.fecha }}</td>
+                    <td>{{ sue.sueldo }}</td>
+                    <td>{{ sue.estado }}</td>
                     <td class="acciones">
-                        <a href="{% url 'ficha_Personal:actualizarInfoAcademica' infoAcade.id %}">✏️</a>
-                        <a href="{% url 'ficha_Personal:deleteInfoAcademica' infoAcade.id %}">❌</a>
+                        <a href="{% url 'ficha_Personal:actualizarSueldo' sue.id %}">✏️</a>
+                        <a href="{% url 'ficha_Personal:deleteSueldo' sue.id %}">❌</a>
                     </td>
                 </tr>
             </tbody>

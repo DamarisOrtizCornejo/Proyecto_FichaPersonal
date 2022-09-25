@@ -7,21 +7,21 @@ class CapacitacionesListView(ListView):
     template_name = "Capacitaciones/listCapacitaciones.html"
     context_object_name = 'capacitacion'
     model = Capacitaciones
-    paginate_by = 3
+    paginate_by = 5
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
         query = self.request.GET.get("query")
         print(query)
         if query:
-            return self.model.objects.filter(nombres__icontains=query)
+            return self.model.objects.filter(empleado__nombres=query)
         else:
             return self.model.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
-        context['listar_url']= '/capacitaciones',
+        context['listar_url']= '/fichaPersonal/capacitaciones'
         context['crear_url'] = '/fichaPersonal/crearCapacitaciones/'
         context['titulo'] = 'LISTADO DE CAPACITACIONES'
         context['query'] = self.request.GET.get("query") or ""
@@ -30,25 +30,20 @@ class CapacitacionesListView(ListView):
 class RegistroCapacitacionesListView(ListView):
     template_name = "Capacitaciones/registroCapacitaciones.html"
     context_object_name = 'capacitaciones'
-    success_url = reverse_lazy('ficha_Personal:capacitaciones')
     model = Capacitaciones
-    paginate_by = 3
+    paginate_by = 5
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
-        query = self.request.GET.get("query")
-        print(query)
-        if query:
-            return self.model.objects.filter(empleado__icontains=query)
-        else:
-            return self.model.objects.all()
+        print("mira", type(self.kwargs['pk']), self.kwargs['pk'])
+        return self.model.objects.filter(empleado__id=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/capacitaciones'
-        context['listar_url']= '/fichaPersonal/registroCapacitaciones',
-        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias/'
-        context['titulo'] = 'REGISTRO DE CONTACTO EMERGENCIAS'
+        context['listar_url']= '/fichaPersonal/registroCapacitaciones'
+        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias'
+        context['titulo'] = 'REGISTRO DE CAPACITACIONES'
         context['query'] = self.request.GET.get("query") or ""
         return context
 
@@ -60,8 +55,8 @@ class CrearCapacitaciones(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['action_save'] = '/fichaPersonal/crearCapacitaciones/'
-        context['titulo'] = 'CREAR CAPACITACIONESA'
+        context['action_save'] = '/fichaPersonal/crearCapacitaciones'
+        context['titulo'] = 'CREAR CAPACITACIONES'
         context['url_anterior'] = '/fichaPersonal/registroCapacitaciones'
         context['listar_url'] = '/fichaPersonal/capacitaciones'
         context['action'] = 'add'

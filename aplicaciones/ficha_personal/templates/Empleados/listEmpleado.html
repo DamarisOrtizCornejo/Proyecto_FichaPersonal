@@ -30,7 +30,7 @@
 {% block rows %}
     {% for emp in empleados %}
         <tr class="align-middle table-warning">
-            <td>{{ emp.id }}</td>
+            <td>{{forloop.counter}}</td>
             <td>{{ emp.nombres }}</td>
             <td>{{ emp.cedula }}</td>
             <td>{{ emp.direccion }}</td>

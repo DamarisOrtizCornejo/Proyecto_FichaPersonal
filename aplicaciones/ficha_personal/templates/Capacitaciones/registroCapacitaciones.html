@@ -18,17 +18,17 @@
             </thead>
     {% endblock %}
     {% block rows %}
-        {% for object in capacitacion %}
+        {% for cap in capacitaciones %}
             <tbody>
                 <tr class="align-middle table-warning">
-                    <td>{{ object.id }}</td>
-                    <td>{{ object.certificado }}</td>
-                    <td>{{ object.fecha_Inicio }}</td>
-                    <td>{{ object.fecha_Fin }}</td>
-                    <td>{{ object.duracion }}</td>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ cap.certificado }}</td>
+                    <td>{{ cap.fecha_Inicio }}</td>
+                    <td>{{ cap.fecha_Fin }}</td>
+                    <td>{{ cap.duracion }}</td>
                     <td class="acciones">
-                        <a href="{% url 'ficha_Personal:actualizarCapacitaciones' object.id %}">✏️</a>
-                        <a href="{% url 'ficha_Personal:deleteCapacitaciones' object.id %}">❌</a>
+                        <a href="{% url 'ficha_Personal:actualizarCapacitaciones' cap.id %}">✏️</a>
+                        <a href="{% url 'ficha_Personal:deleteCapacitaciones' cap.id %}">❌</a>
                     </td>
                 </tr>
             </tbody>

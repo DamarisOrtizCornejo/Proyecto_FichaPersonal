@@ -41,7 +41,7 @@ class Departamento(models.Model):
 class Empleado(Base):
     nombres = models.CharField(max_length=200)
     cedula = models.CharField(max_length=10, unique=True)
-    fecha_nacimiento = models.DateField(blank=True, null=True)
+    fecha_nacimiento = models.DateField(blank=True, null=True, auto_now=False)
     genero = models.CharField(max_length=1, choices=GENERO, default=GENERO[0][0], blank=True, null=True)
     pais = models.ForeignKey(Pais, on_delete=models.PROTECT, blank=True, null=True)
     provincia = models.ForeignKey(Provincia, on_delete=models.PROTECT, blank=True, null=True)
@@ -50,9 +50,9 @@ class Empleado(Base):
     email = models.CharField(max_length=100, unique=True)
     direccion = models.TextField(blank=True, null=True, verbose_name='Dirección')
     telefonos = models.CharField(max_length=50, blank=True, null=True)
-    fecha_IESS = models.DateField(blank=True, null=True)
+    fecha_IESS = models.DateField(blank=True, null=True, auto_now=False)
     tipo_Contrato = models.CharField(max_length=2, choices=TIPO_CONTRATO, default=TIPO_CONTRATO[0][0], blank=True,null=True)
-    fecha_Ingreso = models.DateField(blank=True, null=True)
+    fecha_Ingreso = models.DateField(blank=True, null=True, auto_now=False)
     # sueldo = models.ForeignKey(Ciudad, on_delete=models.PROTECT, blank=True, null=True)
     foto = models.ImageField(upload_to='fichaPersonal/empleados', blank=True, null=True)
     cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT,blank=True, null=True)
@@ -75,7 +75,7 @@ class Empleado(Base):
 
 
 class ContactoEmergencias(models.Model):
-    empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT,blank=True, null=True)
+    empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT,blank=True, null=True, related_name="contactos")
     nombre = models.CharField(max_length=200)
     cedula = models.CharField(max_length=10, unique=True)
     telefonos = models.CharField(max_length=50, blank=True, null=True)
@@ -92,8 +92,8 @@ class ContactoEmergencias(models.Model):
 
 class InfoAcademica(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
-    fecha_Inicio = models.DateField(blank=True, null=True)
-    fecha_Fin = models.DateField(blank=True, null=True)
+    fecha_Inicio = models.DateField(blank=True, null=True, auto_now=False)
+    fecha_Fin = models.DateField(blank=True, null=True, auto_now=False)
     institucion = models.CharField(max_length=100, blank=True, null=True)
     titulo = models.CharField(max_length=50, blank=True, null=True)
 
@@ -108,8 +108,8 @@ class InfoAcademica(models.Model):
 class Capacitaciones(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
     certificado = models.FileField(upload_to='fichaPersonal/capacitaciones', blank=True, null=True)
-    fecha_Inicio = models.DateField(blank=True, null=True)
-    fecha_Fin = models.DateField(blank=True, null=True)
+    fecha_Inicio = models.DateField(blank=True, null=True, auto_now=False)
+    fecha_Fin = models.DateField(blank=True, null=True, auto_now=False)
     duracion = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
@@ -127,10 +127,9 @@ class Capacitaciones(models.Model):
 
 class Sueldo(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
-    fecha = models.DateField(blank=True, null=True)
+    fecha = models.DateField(blank=True, null=True, auto_now=False)
     sueldo = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Sueldo')
     estado = models.BooleanField(default=True)
-
 
     def __str__(self):
         return "{}".format(self.sueldo)

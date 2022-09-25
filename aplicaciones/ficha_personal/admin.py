@@ -87,14 +87,16 @@ class CapacitacionesAdmin(admin.ModelAdmin):
     )
 admin.site.register(Capacitaciones,CapacitacionesAdmin)
 
-# class SueldoAdmin(admin.ModelAdmin):
-#     list_display = (
-#         'fecha',
-#         'sueldo',
-#     )
-#     ordering = ('id',)
-#     search_fields = ('empleado',)
-#     list_filter = (
-#         'empleado',
-#     )
-# admin.site.register(Sueldo,SueldoAdmin)
+class SueldoAdmin(admin.ModelAdmin):
+    list_display = (
+        'empleado',
+        'fecha',
+        'sueldo',
+        'estado',
+    )
+    ordering = ('id',)
+    search_fields = ('empleado',)
+    list_filter = (
+        'empleado',
+    )
+admin.site.register(Sueldo,SueldoAdmin)

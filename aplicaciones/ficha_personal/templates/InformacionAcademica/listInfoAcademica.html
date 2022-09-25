@@ -1,4 +1,4 @@
-{% extends 'consultaFicha.html' %}
+{% extends 'consulta.html' %}
 {% load static %}
 
 {% block js %}
@@ -15,19 +15,25 @@
 {% endblock %}
 
 {% block columns %}
-    <tr class="table-danger text-center">
-        <th scope="col" style="width: 25%;">Empleado</th>
-        <th scope="col" style="width: 15%;">Opciones</th>
-    </tr>
+    <thead>
+        <tr class="align-middle table-success text-center table-bordered border-dark">
+            <th scope="col" style="width: 25px;">Empleado</th>
+            <th scope="col" style="width: 10%;">Opciones</th>
+        </tr>
+    </thead>
 {% endblock %}
 
 {% block rows %}
-     {% for infoAcade in infoAcademica %}
-          <tr class="align-middle table-warning text-center">
-          <td>{{ object.infoAcademica }}</td>
-              <td class="acciones">
-                  <a href="{% url 'ficha_Personal:registroInfoAcademica' %}">🔎️ Ver información</a>
-              </td>
-          </tr>
+    {% for inf in infoAcademica %}
+        <tbody>
+            <tr class="align-middle table-warning text-center table-bordered border-dark">
+                <td>{{ inf.empleado }}</td>
+                <td class="acciones">
+                    <a href="{% url 'ficha_Personal:registroInfoAcademica' inf.empleado_id %}">🔎️ Ver información</a>
+                </td>
+            </tr>
+
+        </tbody>
     {% endfor %}
+
 {% endblock %}

@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 
 from aplicaciones.core.models import Pais
-from aplicaciones.ficha_personal.models import Cargo,Departamento,Empleado,ContactoEmergencias,InfoAcademica,Capacitaciones
+from aplicaciones.ficha_personal.models import Cargo,Departamento,Empleado,Sueldo,ContactoEmergencias,InfoAcademica,Capacitaciones
 
 class CargoForm(ModelForm):
     class Meta:
@@ -44,7 +44,6 @@ class EmpleadoForm(ModelForm):
                                           attrs={'class': 'form-control', 'placeholder': 'Seleccione una fecha','type': 'date'}),
             'cargo': forms.Select(attrs={'class': 'form-control'}),
             'departamento': forms.Select(attrs={'class': 'form-control'}),
-            # 'sueldo': forms.fo(attrs={'class': 'form-control'}),
             # 'foto': forms.ImageField(attrs={'class': 'form-control'}),
             # 'fecha': forms.DateInput(attrs={'class': 'form-control'}),
         }
@@ -56,6 +55,15 @@ class PaisForm(ModelForm):
 
         widgets = {
            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class SueldoForm(ModelForm):
+    class Meta:
+        model = Sueldo
+        fields = '__all__'
+        widgets = {
+            'fecha': forms.DateInput(format=('%d/%m/%Y'),attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha inicial','type': 'date'}),
+            'sueldo': forms.TextInput(attrs={'placeholder': 'xx,xx', 'value': '0'}),
         }
 
 class ContactoEmergenciasForm(ModelForm):
@@ -92,3 +100,4 @@ class CapacitacionesForm(ModelForm):
             'fecha_Fin': forms.DateInput(format=('%d/%m/%Y'),attrs={'class': 'form-control', 'placeholder': 'Seleccione la fecha final','type': 'date'}),
             'duracion': forms.TextInput(attrs={'class': 'form-control','placeholder':'Ingrese cuanto tiempo duro su capacitacion'}),
         }
+

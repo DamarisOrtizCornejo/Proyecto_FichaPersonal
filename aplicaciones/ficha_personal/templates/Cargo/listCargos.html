@@ -16,7 +16,7 @@
 {% block rows %}
     {% for object in cargo %}
         <tr class="align-middle table-warning text-center">
-            <td>{{ object.id }}</td>
+            <td>{{forloop.counter}}</td>
             <td>{{ object.descripcion }}</td>
             <td class="acciones">
                 <a href="{% url 'ficha_Personal:actualizarcargo' object.id %}">✏️</a>

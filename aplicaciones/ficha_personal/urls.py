@@ -6,6 +6,7 @@ from .views.Cargo.views import CargoListView, CrearCargo, ActualizarCargo, Elimi
 from .views.ContactoEmergencia.views import ContactoEmergenciaListView, RegistroContactoEmergenciaListView, CrearContactoEmergencia, ActualizarContactoEmergencia, EliminarContactoEmergencia
 from .views.InformacionAcademica.views import InfoAcademicaListView, RegistroInfoAcademicaListView, CrearInfoAcademica, ActualizarInfoAcademica, EliminarInfoAcademica
 from .views.Capacitaciones.views import CapacitacionesListView, RegistroCapacitacionesListView, CrearCapacitaciones, ActualizarCapacitaciones, EliminarCapacitaciones
+from .views.Sueldo.views import SueldoListView, RegistroSueldoListView, CrearSueldo, ActualizarSueldo, EliminarSueldo
 from .views.fichaPersonal.views import FichaPersonalTemplateView
 
 app_name = "ficha_Personal"  # nombre de la app
@@ -33,14 +34,20 @@ urlpatterns = [
     path('eliminarContactoEmergencia/<int:pk>/', EliminarContactoEmergencia.as_view(), name='deleteContactoEmergencia'),
 
     path('infoAcademica', InfoAcademicaListView.as_view(), name='infoAcademica'),
-    path('registroInfoAcademica', RegistroInfoAcademicaListView.as_view(), name='registroInfoAcademica'),
+    path('registroInfoAcademica/<int:pk>/', RegistroInfoAcademicaListView.as_view(), name='registroInfoAcademica'),
     path('crearInfoAcademica/', CrearInfoAcademica.as_view(), name='crearInfoAcademica'),
     path('actualizarInfoAcademica/<int:pk>/', ActualizarInfoAcademica.as_view(),name='actualizarInfoAcademica'),
     path('eliminarInfoAcademica/<int:pk>/', EliminarInfoAcademica.as_view(), name='deleteInfoAcademica'),
 
     path('capacitaciones', CapacitacionesListView.as_view(), name='capacitaciones'),
-    path('registroCapacitaciones', RegistroCapacitacionesListView.as_view(), name='registroCapacitaciones'),
+    path('registroCapacitaciones/<int:pk>/', RegistroCapacitacionesListView.as_view(), name='registroCapacitaciones'),
     path('crearCapacitaciones/', CrearCapacitaciones.as_view(), name='crearCapacitaciones'),
     path('actualizarCapacitaciones/<int:pk>/', ActualizarCapacitaciones.as_view(), name='actualizarCapacitaciones'),
     path('eliminarCapacitaciones/<int:pk>/', EliminarCapacitaciones.as_view(), name='deleteCapacitaciones'),
+
+    path('sueldo', SueldoListView.as_view(), name='sueldo'),
+    path('registroSueldo/<int:pk>/', RegistroSueldoListView.as_view(), name='registroSueldo'),
+    path('crearSueldo/', CrearSueldo.as_view(), name='crearSueldo'),
+    path('actualizarSueldo/<int:pk>/', ActualizarSueldo.as_view(), name='actualizarSueldo'),
+    path('eliminarSueldo/<int:pk>/', EliminarSueldo.as_view(), name='deleteSueldo'),
 ]
