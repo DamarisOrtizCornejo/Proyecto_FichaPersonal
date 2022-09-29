@@ -7,7 +7,7 @@ class InfoAcademicaListView(ListView):
     template_name = "InformacionAcademica/listInfoAcademica.html"
     context_object_name = 'infoAcademica'
     model = InfoAcademica
-    paginate_by = 5
+    paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -22,7 +22,7 @@ class InfoAcademicaListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
         context['listar_url']= '/fichaPersonal/infoAcademica'
-        context['crear_url'] = '/fichaPersonal/crearinfoAcademica'
+        context['crear_url'] = '/fichaPersonal/crearinfoAcademica/'
         context['titulo'] = 'LISTADO DE INFORMACIÓN ACADÉMICA'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -31,7 +31,7 @@ class RegistroInfoAcademicaListView(ListView):
     template_name = "InformacionAcademica/registroInfoAcademica.html"
     model = InfoAcademica
     context_object_name = 'infoAcademicas'
-    paginate_by = 5
+    paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -42,7 +42,7 @@ class RegistroInfoAcademicaListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/infoAcademica'
         context['listar_url']= '/fichaPersonal/registroInfoAcademica'
-        context['crear_url'] = '/fichaPersonal/crearInfoAcademica'
+        context['crear_url'] = '/fichaPersonal/crearInfoAcademica/'
         context['titulo'] = 'REGISTRO DE INFORMACIÓN ACADÉMICA'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -65,7 +65,7 @@ class CrearInfoAcademica(CreateView):
 class ActualizarInfoAcademica(UpdateView):
     model = InfoAcademica
     template_name = "InformacionAcademica/form.html"
-    success_url = reverse_lazy('ficha_Personal:actualizarInfoAcademica')
+    success_url = reverse_lazy('ficha_Personal:infoAcademica')
     form_class = InfoAcademicaForm
     #queryset = Cliente.objects.get(pk=request.GET.get("id"))
 
@@ -81,7 +81,7 @@ class ActualizarInfoAcademica(UpdateView):
 class EliminarInfoAcademica(DeleteView):
     model = InfoAcademica
     template_name = "InformacionAcademica/delete.html"
-    success_url = reverse_lazy('ficha_Personal:deleteInfoAcademica')
+    success_url = reverse_lazy('ficha_Personal:infoAcademica')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

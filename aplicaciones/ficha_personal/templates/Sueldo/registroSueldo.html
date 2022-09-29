@@ -23,7 +23,11 @@
                     <td>{{ forloop.counter}}</td>
                     <td>{{ sue.fecha }}</td>
                     <td>{{ sue.sueldo }}</td>
-                    <td>{{ sue.estado }}</td>
+                    <td>{% if sue.estado %}
+                            ✅ Activo
+                        {% else %}
+                            🚫 Anulada
+                        {% endif %}
                     <td class="acciones">
                         <a href="{% url 'ficha_Personal:actualizarSueldo' sue.id %}">✏️</a>
                         <a href="{% url 'ficha_Personal:deleteSueldo' sue.id %}">❌</a>

@@ -26,6 +26,7 @@ urlpatterns = [
     path('venta/', include('aplicaciones.ventas.urls')),
     path('fichaPersonal/', include('aplicaciones.ficha_personal.urls')),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

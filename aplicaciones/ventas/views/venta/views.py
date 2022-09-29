@@ -101,7 +101,7 @@ class EditarVenta(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['action_save'] = f'/venta/editar/{self.get_object().id}/'
+        context['action_save'] = '/venta/editar/{self.get_object().id}/'
         context['titulo'] = 'EDITAR VENTA'
         context['url_anterior'] = '/venta/menu'
         context['listar_url'] = '/venta/consulta'

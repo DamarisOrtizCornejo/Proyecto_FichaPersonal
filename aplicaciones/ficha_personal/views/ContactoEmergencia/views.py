@@ -7,7 +7,7 @@ class ContactoEmergenciaListView(ListView):
     template_name = "ContactoEmergencia/listContactoEmergencia.html"
     context_object_name = 'contactoEmergencia'
     model = ContactoEmergencias
-    paginate_by = 5
+    paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -22,7 +22,7 @@ class ContactoEmergenciaListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
         context['listar_url']= '/fichaPersonal/contactoEmergencia'
-        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias'
+        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias/'
         context['titulo'] = 'LISTADO DE CONTACTO EMERGENCIAS'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -31,7 +31,7 @@ class RegistroContactoEmergenciaListView(ListView):
     template_name = "ContactoEmergencia/registroContacto.html"
     model = ContactoEmergencias
     context_object_name = 'contactoEmergencias'
-    paginate_by = 5
+    paginate_by = 3
     # queryset = ContactoEmergencias.objects.filter(id=1)
 
     def get_queryset(self):
@@ -42,7 +42,7 @@ class RegistroContactoEmergenciaListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/contactoEmergencia'
         context['listar_url']= '/fichaPersonal/registroContactoEmergencias'
-        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias'
+        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias/'
         context['titulo'] = 'REGISTRO DE CONTACTO EMERGENCIAS'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -55,7 +55,7 @@ class CrearContactoEmergencia(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['action_save'] = '/fichaPersonal/crearContactoEmergencia'
+        context['action_save'] = '/fichaPersonal/crearContactoEmergencia/'
         context['titulo'] = 'CREAR CONTACTO EMERGENCIA'
         context['url_anterior'] = '/fichaPersonal/registroContactoEmergencia'
         context['listar_url'] = '/fichaPersonal/contactoEmergencia'
@@ -66,7 +66,7 @@ class ActualizarContactoEmergencia(UpdateView):
     model = ContactoEmergencias
     template_name = "ContactoEmergencia/form.html"
     # success_url = reverse_lazy('ficha_Personal:registroContactoEmergencia')
-    success_url = reverse_lazy('ficha_Personal:actualizarCapacitaciones')
+    success_url = reverse_lazy('ficha_Personal:contactoEmergencia')
     form_class = ContactoEmergenciasForm
     #queryset = Cliente.objects.get(pk=request.GET.get("id"))
 
@@ -82,7 +82,7 @@ class ActualizarContactoEmergencia(UpdateView):
 class EliminarContactoEmergencia(DeleteView):
     model = ContactoEmergencias
     template_name = "ContactoEmergencia/delete.html"
-    success_url = reverse_lazy('ficha_Personal:deleteContactoEmergencia')
+    success_url = reverse_lazy('ficha_Personal:contactoEmergencia')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

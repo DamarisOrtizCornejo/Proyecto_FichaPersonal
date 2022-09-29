@@ -1,7 +1,3 @@
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, CreateView, DeleteView, UpdateView
-from aplicaciones.ficha_personal.forms import SueldoForm
-from aplicaciones.ficha_personal.models import Sueldo
 
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, DeleteView, UpdateView
@@ -12,7 +8,7 @@ class SueldoListView(ListView):
     template_name = "Sueldo/listSueldo.html"
     context_object_name = 'sueldo'
     model = Sueldo
-    paginate_by = 5
+    paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -27,7 +23,7 @@ class SueldoListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
         context['listar_url']= '/fichaPersonal/sueldo'
-        context['crear_url'] = '/fichaPersonal/crearSueldo'
+        context['crear_url'] = '/fichaPersonal/crearSueldo/'
         context['titulo'] = 'LISTADO DE SUELDO'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -36,7 +32,7 @@ class RegistroSueldoListView(ListView):
     template_name = "Sueldo/registroSueldo.html"
     model = Sueldo
     context_object_name = 'sueldos'
-    paginate_by = 5
+    paginate_by = 3
     # queryset = ContactoEmergencias.objects.filter(id=1)
 
     def get_queryset(self):
@@ -47,7 +43,7 @@ class RegistroSueldoListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/sueldo'
         context['listar_url']= '/fichaPersonal/registroSueldo'
-        context['crear_url'] = '/fichaPersonal/crearSueldo'
+        context['crear_url'] = '/fichaPersonal/crearSueldo/'
         context['titulo'] = 'REGISTRO DE SUELDOS'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -60,7 +56,7 @@ class CrearSueldo(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['action_save'] = '/fichaPersonal/crearSueldo'
+        context['action_save'] = '/fichaPersonal/crearSueldo/'
         context['titulo'] = 'CREAR SUELDO'
         context['url_anterior'] = '/fichaPersonal/registroSueldo'
         context['listar_url'] = '/fichaPersonal/sueldo'
@@ -87,7 +83,7 @@ class ActualizarSueldo(UpdateView):
 class EliminarSueldo(DeleteView):
     model = Sueldo
     template_name = "Sueldo/delete.html"
-    success_url = reverse_lazy('ficha_Personal:deleteSueldo')
+    success_url = reverse_lazy('ficha_Personal:sueldo')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

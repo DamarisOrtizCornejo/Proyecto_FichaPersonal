@@ -22,7 +22,7 @@ class CargoListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/fichaPersonal'
         context['listar_url']= '/fichaPersonal/cargo'
-        context['crear_url'] = '/fichaPersonal/crearcargo'
+        context['crear_url'] = '/fichaPersonal/crearcargo/'
         context['titulo'] = 'LISTADO DE CARGOS'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -36,7 +36,7 @@ class CrearCargo(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['action_save'] = '/fichaPersonal/crearcargo'
+        context['action_save'] = '/fichaPersonal/crearcargo/'
         context['titulo'] = 'CREAR CARGO'
         context['url_anterior'] = '/fichaPersonal/cargo'
         context['listar_url'] = '/fichaPersonal/cargo'
@@ -47,7 +47,7 @@ class CrearCargo(CreateView):
 class ActualizarCargo(UpdateView):
     model = Cargo
     template_name = "Cargo/formCargo.html"
-    success_url = reverse_lazy('ficha_Personal:actualizarcargo')
+    success_url = reverse_lazy('ficha_Personal:cargo')
     form_class = CargoForm
     #queryset = Cliente.objects.get(pk=request.GET.get("id"))
 
@@ -63,7 +63,7 @@ class ActualizarCargo(UpdateView):
 class EliminarCargo(DeleteView):
     model = Cargo
     template_name = "Cargo/eliminar_cargo.html"
-    success_url = reverse_lazy('ficha_Personal:deletecargo')
+    success_url = reverse_lazy('ficha_Personal:cargo')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

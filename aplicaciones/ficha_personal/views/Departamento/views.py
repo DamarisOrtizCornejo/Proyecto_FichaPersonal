@@ -45,7 +45,7 @@ class CrearDepartamento(CreateView):
 class ActualizarDepartamento(UpdateView):
     model = Departamento
     template_name = "Departamento/formDepartamento.html"
-    success_url = reverse_lazy('ficha_Personal:actualizardepartamento')
+    success_url = reverse_lazy('ficha_Personal:departamento')
     form_class = DepartamentoForm
     #queryset = Cliente.objects.get(pk=request.GET.get("id"))
 
@@ -61,7 +61,7 @@ class ActualizarDepartamento(UpdateView):
 class EliminarDepartamento(DeleteView):
     model = Departamento
     template_name = "Departamento/eliminar_departamento.html"
-    success_url = reverse_lazy('ficha_Personal:deletedepartamento')
+    success_url = reverse_lazy('ficha_Personal:departamento')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

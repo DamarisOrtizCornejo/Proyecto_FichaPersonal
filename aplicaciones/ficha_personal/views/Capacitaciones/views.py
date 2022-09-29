@@ -7,7 +7,7 @@ class CapacitacionesListView(ListView):
     template_name = "Capacitaciones/listCapacitaciones.html"
     context_object_name = 'capacitacion'
     model = Capacitaciones
-    paginate_by = 5
+    paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -31,7 +31,7 @@ class RegistroCapacitacionesListView(ListView):
     template_name = "Capacitaciones/registroCapacitaciones.html"
     context_object_name = 'capacitaciones'
     model = Capacitaciones
-    paginate_by = 5
+    paginate_by = 3
     #queryset = Cliente.objects.filter(estado=True)
 
     def get_queryset(self):
@@ -42,7 +42,7 @@ class RegistroCapacitacionesListView(ListView):
         context = super().get_context_data(**kwargs)
         context['url_anterior'] = '/fichaPersonal/capacitaciones'
         context['listar_url']= '/fichaPersonal/registroCapacitaciones'
-        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias'
+        context['crear_url'] = '/fichaPersonal/crearcontactoEmergencias/'
         context['titulo'] = 'REGISTRO DE CAPACITACIONES'
         context['query'] = self.request.GET.get("query") or ""
         return context
@@ -65,7 +65,7 @@ class CrearCapacitaciones(CreateView):
 class ActualizarCapacitaciones(UpdateView):
     model = Capacitaciones
     template_name = "Capacitaciones/form.html"
-    success_url = reverse_lazy('ficha_Personal:actualizarCapacitaciones')
+    success_url = reverse_lazy('ficha_Personal:capacitaciones')
     form_class = CapacitacionesForm
     #queryset = Cliente.objects.get(pk=request.GET.get("id"))
 
@@ -81,7 +81,7 @@ class ActualizarCapacitaciones(UpdateView):
 class EliminarCapacitaciones(DeleteView):
     model = Capacitaciones
     template_name = "Capacitaciones/delete.html"
-    success_url = reverse_lazy('ficha_Personal:deleteCapacitaciones')
+    success_url = reverse_lazy('ficha_Personal:capacitaciones')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

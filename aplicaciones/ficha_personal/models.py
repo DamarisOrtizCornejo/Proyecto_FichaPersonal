@@ -73,6 +73,18 @@ class Empleado(Base):
             return '{}{}'.format(settings.MEDIA_URL, self.foto)
         return '{}{}'.format(settings.STATIC_URL, 'img/default/empty.jpg')
 
+    def estadoCivil(self):
+        if self.estado_civil=="S":
+           estado="Soltero(a)"
+        elif self.estado_civil=="C":
+            estado="Casado(a)"
+        elif self.estado_civil=="D":
+            estado="Divorciado(a)"
+        elif self.estado_civil=="V":
+            estado="Viudo(a)"
+        else:
+            estado="Union Libre"
+        return estado
 
 class ContactoEmergencias(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT,blank=True, null=True, related_name="contactos")
@@ -89,6 +101,35 @@ class ContactoEmergencias(models.Model):
         verbose_name = "ContactoEmergencia"
         verbose_name_plural = "ContactosEmergencias"
         ordering = ('id',)
+
+    def pariente(self):
+        if self.parentesco=="M":
+           paren="Madre"
+        elif self.parentesco=="P":
+            paren="Padre"
+        elif self.parentesco=="H":
+            paren="Hermano(a)"
+        elif self.parentesco=="A":
+            paren="Abuelo(a)"
+        elif self.parentesco=="T":
+            paren="Tio(a)"
+        elif self.parentesco=="Pr":
+            paren="Primo(a)"
+        elif self.parentesco=="S":
+            paren="Sobrino(a)"
+        elif self.parentesco=="C":
+            paren="Cuñado(a)"
+        elif self.parentesco=="Pd":
+            paren="Padrastro"
+        elif self.parentesco=="Md":
+            paren="Madrastra"
+        elif self.parentesco=="Co":
+            paren="Conyuge"
+        elif self.parentesco=="Hi":
+            paren="Hijo(a)"
+        else:
+            paren="Otros"
+        return paren
 
 class InfoAcademica(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT, blank=True, null=True)
